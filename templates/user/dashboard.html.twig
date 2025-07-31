@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon espace{% endblock %}
+
+{% block body %}
+    <h1>Mes articles</h1>
+
+    {% if articles %}
+        <ul>
+            {% for article in articles %}
+                <li>
+                    <a href="{{ path('article_show', { id: article.id }) }}">{{ article.titre }}</a>
+                    ({{ article.dateCreation|date('d/m/Y') }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Vous n'avez pas encore publié d’article.</p>
+    {% endif %}
+
+    <a href="{{ path('article_new') }}">📝 Publier un article</a>
+{% endblock %}

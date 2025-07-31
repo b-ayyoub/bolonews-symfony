@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.titre }} - Bolonews{% endblock %}
+
+{% block body %}
+    <div style="max-width:800px; margin:auto; padding:20px;">
+        <a href="{{ path('app_home') }}" style="color:#555;">← Retour aux articles</a>
+
+        <h1>{{ article.titre }}</h1>
+
+        {% if article.image %}
+        <pre>{{ dump(article.image) }}</pre>
+            <img src="{{ asset('uploads/images/' ~ article.image) }}"
+                 alt="{{ article.titre }}"
+                 style="max-width:100%; height:auto; margin:20px 0; border-radius:8px;">
+        {% endif %}
+
+        <p><strong>Catégorie :</strong> {{ article.categorie ?? 'Non catégorisé' }}</p>
+        <p><strong>Auteur :</strong> {{ article.auteur ? article.auteur.pseudo : 'Inconnu' }}</p>
+        <p><strong>Publié le :</strong> {{ article.dateCreation|date('d/m/Y à H:i') }}</p>
+
+        <hr style="margin:20px 0;">
+
+        <p style="font-style: italic;">{{ article.chapeau }}</p>
+
+        <div style="margin: 30px 0;">
+            <strong>Contenu :</strong>
+            <p>{{ article.contenu|nl2br }}</p>
+        </div>
+
+        <p><strong>👍</strong> {{ article.likes }} like(s)</p>
+
+        <hr style="margin:30px 0;">
+
+        <h2>💬 Commentaires</h2>
+
+        {# Bouton LIKE — visible uniquement si connecté #}
+        {% if app.user %}
+            <form method="post" action="{{ path('article_like', { id: article.id }) }}">
+                <button type="submit" class="btn btn-outline-primary">👍 J’aime</button>
+            </form>
+        {% else %}
+            <p><a href="{{ path('app_login') }}">Connecte-toi</a> pour aimer cet article.</p>
+        {% endif %}
+
+        {# Formulaire de commentaire (non encore fonctionnel) #}
+        <hr>
+        {% if app.user %}
+            <h3>Ajouter un commentaire</h3>
+            {{ form_start(formCommentaire) }}
+                {{ form_row(formCommentaire.contenu) }}
+                <button type="submit" class="btn btn-secondary mt-2">Publier</button>
+            {{ form_end(formCommentaire) }}
+        {% else %}
+            <p><a href="{{ path('app_login') }}">Connecte-toi</a> pour publier un commentaire.</p>
+        {% endif %}
+
+        {# Liste de commentaires (à afficher plus tard) #}
+        {# <div class="comment">
+            <p><strong>Anaïs :</strong> Merci pour l'article !</p>
+        </div> #}
+        <h2>💬 Commentaires</h2>
+
+    </div>
+{% endblock %}
