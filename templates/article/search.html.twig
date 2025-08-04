@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{# Hérite du template principal base.html.twig pour garder la structure commune (header, footer, styles…) #}
+
+{% block title %}
+    Résultats de recherche - Bolonews
+{% endblock %}
+{# Définit le titre de la page affiché dans l’onglet du navigateur #}
+
+{% block body %}
+    <h1>Résultats de recherche</h1>
+    {# Titre principal visible en haut de la page #}
+
+    <form action="{{ path('app_search') }}" method="get" class="search-bar" style="margin-bottom:20px;">
+        {# Formulaire GET pour saisir un mot clé, qui sera transmis à la route "app_search" #}
+        <input type="text" name="q" value="{{ search }}" placeholder="Rechercher un article...">
+        {# Champ texte pré-rempli avec la variable "search" contenant la recherche en cours #}
+        <button type="submit">🔍 Rechercher</button>
+        {# Bouton pour soumettre la recherche #}
+    </form>
+
+    {% if search %}
+        <p>Recherche pour : <strong>{{ search }}</strong></p>
+        {# Si la variable "search" n'est pas vide, affiche la recherche en cours #}
+    {% endif %}
+
+    {% if articles is empty %}
+        <p>Aucun article ne correspond à votre recherche.</p>
+        {# Si aucun article ne correspond, affiche un message d’absence de résultats #}
+    {% else %}
+        <div class="articles">
+        {# Conteneur global pour la liste des articles #}
+
+            {% for article in articles %}
+            {# Boucle sur chaque article du tableau "articles" fourni par le contrôleur #}
+
+                <div class="article-card">
+                {# Bloc individuel pour chaque article, pouvant être stylisé par CSS #}
+
+                    {% if article.image %}
+                        <img src="{{ asset('uploads/images/' ~ article.image) }}" alt="{{ article.titre }}" class="article-img" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+                        {# Affiche l’image de l’article si elle existe, avec un chemin relatif dans uploads/images/ #}
+                        {# La balise img est responsive et a un petit margin dessous #}
+                    {% endif %}
+                    
+                    <h2>
+                        <a href="{{ path('article_show', { id: article.id }) }}">{{ article.titre }}</a>
+                        {# Titre de l’article cliquable vers sa page détaillée #}
+                    </h2>
+                    
+                    <p>{{ article.chapeau|length > 200 ? article.chapeau|slice(0, 200) ~ '…' : article.chapeau }}</p>
+                    {# Affiche un extrait (chapeau) limité à 200 caractères, avec "…" si trop long #}
+
+                    <p><strong>Auteur :</strong> {{ article.auteur ? article.auteur.pseudo : 'Inconnu' }}</p>
+                    {# Affiche le pseudo de l’auteur ou 'Inconnu' si non défini #}
+
+                    <p><strong>Date :</strong> {{ article.dateCreation ? article.dateCreation|date('d/m/Y') : '' }}</p>
+                    {# Date de création formatée en jour/mois/année, ou vide si absente #}
+
+                    <a href="{{ path('article_show', { id: article.id }) }}">➡️ Lire l’article</a>
+                    {# Lien texte en bas vers la page complète de l’article #}
+
+                </div> {# Fin d’une carte article #}
+            {% endfor %}
+        </div> {# Fin du conteneur liste articles #}
+    {% endif %}
+{% endblock %}
+{# Fin du bloc body #}

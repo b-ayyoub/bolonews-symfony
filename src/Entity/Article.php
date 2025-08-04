@@ -45,6 +45,7 @@ class Article
     #[ORM\Column(type: 'integer')]
     private int $likes = 0;
 
+
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'likedArticles')]
     private Collection $likedBy;
 
@@ -167,6 +168,7 @@ class Article
         $this->likes = $likes;
         return $this;
     }
+
 
     /**
      * @return Collection<int, User>

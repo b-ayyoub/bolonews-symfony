@@ -5,17 +5,23 @@
 {% block body %}
     <h1>Création de compte utilisateur</h1>
 
+    {# Affiche une alerte verte pour chaque message flash de type “success” (après une inscription réussie par exemple) #}
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">{{ message }}</div>
     {% endfor %}
-
+    {# Début du formulaire Symfony généré automatiquement avec registrationForm (lié à RegisterType.php) #}
     {{ form_start(registrationForm) }}
+    {# Champ du formulaire pour saisir l’adresse email #}
         {{ form_row(registrationForm.email) }}
+        {# Champ pour le mot de passe (plainPassword = mot de passe avant hash bcrypt) #}
         {{ form_row(registrationForm.plainPassword) }}
+        {# Case à cocher “J’accepte les conditions” (doit être cochée pour valider l'inscription) #}
         {{ form_row(registrationForm.agreeTerms) }}
+        {# Champ pour choisir un pseudo (nom affiché publiquement dans les articles / commentaires) #}
         {{ form_row(registrationForm.pseudo) }}
 
         <button class="btn btn-primary">Créer mon compte</button>
+        {# Fin du formulaire (ferme la balise <form>) #}
     {{ form_end(registrationForm) }}
 
     <p>Déjà inscrit ? <a href="{{ path('app_login') }}">Se connecter</a></p>

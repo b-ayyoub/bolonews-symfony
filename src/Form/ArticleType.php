@@ -2,10 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Article;
-use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\AbstractType;
+use App\Entity\Article;
+use Symfony\Component\Validator\Constraints\File;
 
 class ArticleType extends AbstractType
 {
@@ -15,14 +17,23 @@ class ArticleType extends AbstractType
             ->add('titre')
             ->add('chapeau')
             ->add('contenu')
-            ->add('image')
-            ->add('auteur')
-            ->add('date_creation')
-            ->add('date_modification')
             ->add('categorie')
-            ->add('likes')
-            ->add('commentaire')
-        ;
+            ->add('image', FileType::class, [
+                'label' => 'Image de l’article',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/webp',
+                        ],
+                        'mimeTypesMessage' => 'Merci de choisir une image valide (.jpeg, .png, .webp)',
+                    ])
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

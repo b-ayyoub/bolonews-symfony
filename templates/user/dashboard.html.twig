@@ -5,9 +5,13 @@
 {% block body %}
     <h1>Mes articles</h1>
 
+    {# Vérifie s’il existe au moins 1 article dans la variable "articles" #}
     {% if articles %}
+    {# Si oui, on crée une liste HTML des articles de l’utilisateur connecté #}
         <ul>
+        {# Boucle sur chaque article transmis à la vue pour construire la liste #}
             {% for article in articles %}
+            {# Chaque article est affiché sous forme de lien vers sa page de détail + sa date #}
                 <li>
                     <a href="{{ path('article_show', { id: article.id }) }}">{{ article.titre }}</a>
                     ({{ article.dateCreation|date('d/m/Y') }})

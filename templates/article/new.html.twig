@@ -1,12 +1,29 @@
+{# On utilise le template de base (mise en page générale) #}
 {% extends 'base.html.twig' %}
 
+{# Titre de la page affiché dans l’onglet du navigateur #}
 {% block title %}Créer un article{% endblock %}
 
+{# Bloc principal du contenu affiché dans la balise <body> du site #}
 {% block body %}
     <h1>Créer un nouvel article</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn btn-primary">Publier</button>
-    {{ form_end(form) }}
+{# Démarre le formulaire Symfony lié à l’objet Article #}
+    {# L’attribut 'enctype' est nécessaire pour permettre l’envoi de fichiers (ex: image) #}
+{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+    {# Champ du formulaire pour le titre de l’article #}
+    {{ form_row(form.titre) }}
+    {# Champ pour le chapeau (résumé court/introduction) de l’article #}
+    {{ form_row(form.chapeau) }}
+    {# Champ du contenu principal (grand texte) de l’article #}
+    {{ form_row(form.contenu) }}
+    {# Champ pour choisir une catégorie (souvent champ texte ou liste déroulante) #}
+    {{ form_row(form.categorie) }}
+    {# Champ pour téléverser une image en illustrant l’article (champ de type FileType) #}
+    {{ form_row(form.image) }}
+
+    <button type="submit" class="btn btn-primary">Publier</button>
+{# Ferme la balise </form> automatiquement #}
+{{ form_end(form) }}
+
 {% endblock %}

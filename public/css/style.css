@@ -1,0 +1,350 @@
+body {
+    background: #ededed;
+    margin: 0;
+}
+
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    font-family: Georgia, serif;
+    position: relative;
+}
+
+.main-header a {
+    text-decoration: none;
+    color: black;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.main-header .logo {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.main-header .center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.main-header .headline {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-family: Georgia, serif;
+}
+
+.main-header .headline h1 {
+    margin: 0;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.main-header .headline p {
+    margin: 5px 0 0;
+    font-size: 10px;
+}
+
+
+/********************************** fin header **********************************/
+
+.articles{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 20px 5%;
+}
+
+.article-detail {
+    max-width: 650px;
+    margin: 2em auto;
+    background: #d5d2d2;
+    border-radius: 15px;
+    padding: 2em;
+    box-shadow: 0 2px 15px #ccc2;
+    margin-top: 5rem;
+}
+
+h1, h2, h3 {
+    color: #2c2c2c;
+    margin-bottom: 5rem;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    border-radius: 9px;
+    margin: 1rem 0;
+}
+
+.article-img {
+    height: 20vh;
+    width: 20%;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+
+.article-meta {
+    color: #777;
+    font-size: 0.95em;
+    margin-bottom: 1.5rem;
+}
+
+.article-content {
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.article-card{
+    width: 30%;;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.commentaire {
+    background: #f6faff;
+    padding: 1em 1.2em;
+    border-radius: 8px;
+    border-left: 4px solid #b2c6de;
+    margin-bottom: 20px;
+}
+
+/* Form */
+textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #fafafa;
+    resize: vertical;
+}
+
+.btn, .btn-secondary {
+    background: #e5e2e2;
+    color: rgb(12, 11, 11);
+    border: none;
+    border-radius: 20px;
+
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.btn:hover {
+    background: #1a5a8d;
+}
+
+/* Like bouton */
+.like-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+
+    color: #444444;
+    font-size: 1.1em;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: border 0.16s, background 0.16s;
+    box-shadow: 0 1px 4px #ececec;
+}
+
+.like-btn:hover,
+.like-btn.liked {
+
+    background: #fff4f7;
+}
+
+.like-count {
+    font-weight: 500;
+    font-size: 1.05em;
+
+}
+
+.like-icon {
+    display: flex;
+    align-items: center;
+}
+
+.coeur-xxl {
+    width: 20px ;
+    height: 20px ;
+}
+
+
+
+.comment-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #68a2cf;
+    font-size: 1em;
+    margin-left: 15px;
+}
+.comment-bulle {
+    width: 24px !important;
+    height: 24px !important;
+}
+.comment-count {
+    font-size: 1em;
+    font-weight: 500;
+    color: #478eb6;
+    margin-left: 3px;
+}
+
+/*********** formulaire ***********/
+
+/* Formulaire */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 12px;
+
+}
+
+/* Labels et champs */
+form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #555;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border 0.3s;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Case à cocher */
+form .form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+form .form-check input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Bouton */
+.btn.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #bcc7d3;
+    color: rgb(27, 22, 22);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn.btn-primary:hover {
+    background-color: #43b4ff;
+}
+
+/* Alerte succès */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 12px;
+    border-radius: 6px;
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Lien vers la connexion */
+p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+p a {
+    color: #0077ee;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+
+
+/**************** barre de recherche ****************/
+
+.search-bar-container {
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    width: 100%;
+    padding: 5px 0;
+    margin-top: 6rem;
+  }
+  
+  .search-bar {
+    width: 340px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #000;
+    padding: 0 10px;
+  }
+  
+  .search-bar input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1.1em;
+    font-family: serif;
+    background: transparent;
+  }
+  
+  .search-bar input[type="text"]::placeholder {
+    color: #222;
+    font-family: serif;
+  }
+  
+  .search-icon {
+    margin-left: 8px;
+    font-size: 18px;
+    color: #000;
+    cursor: pointer;
+  }
+  
+  .h3 {
+    margin-top: 3rem;
+  }
+
+  .mb-3{
+    margin-top: 3rem;
+  }
